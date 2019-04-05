@@ -13,6 +13,7 @@ const sqlSessionsOptions = config.get('dbConfig');
 var sessionStore = new MySQLStore(sqlSessionsOptions);
 var indexRouter = require('./routes/index');
 var bestillRouter = require('./routes/bestill');
+var adminRouter = require('./routes/admin')
 
 var app = express();
 
@@ -36,6 +37,7 @@ app.use(expressSession({
 
 app.use('/', indexRouter);
 app.use('/bestill', bestillRouter);
+app.use('/admin', adminRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

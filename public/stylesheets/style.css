@@ -76,6 +76,7 @@ article {
 	padding: 20px;
 	width: 85%;
 	background-color: #fdcaa0;
+	min-height: 300px;
 	/* only for demonstration, should be removed */
 }
 
@@ -149,12 +150,38 @@ footer {
 	background-color: rgb(253, 246, 231);
 }
 
-/* responsiv nettside!! */
+.login-form {
+	width:30%;
+	text-align:center;
+}
+
+.login-form input {
+	background-color: rgb(255, 240, 208);
+	border-style: solid;
+	border-color: rgb(148, 135, 117);
+	border-radius: 5px;
+}
+
+
+.login-form input[type="text"],[type="password"] {
+	height: 50px;
+	width: 100%;
+	padding-left: 10px;
+}
+
+.login-form input[type="submit"] {
+	width:100px;
+	height: 25px;
+}
+
+/* responsiv nettside */
 @media (max-width: 800px) {
 	nav, article {
 		width: 100%;
 		height: auto;
 	}
+
+	/* endre griden til å bare ha en colonne */
 	.grid-container {
 		grid-template-columns: auto;
 	}
