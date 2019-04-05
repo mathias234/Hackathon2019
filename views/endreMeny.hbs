@@ -1,0 +1,21 @@
+<article>
+    {{#each pizza}}
+    Pizza Navn: {{this.name}}
+
+    <form action="/admin/slettpizza/{{this.id}}" method="POST">
+        <input type="submit" value="Slett">
+    </form>
+
+    <br>
+    {{/each}}
+
+    <h2>Legg til Pizza: </h2>
+
+    <form action="/admin/addpizza" method="POST">
+        <input type="text" name="pizzaNavn" value="Pizza Navn">
+        <input type="text" name="pizzaBeskrivelse" value="Pizza Beskrivelse">
+        <input type="submit" value="Legg til">
+    </form>
+
+
+</article>

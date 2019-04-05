@@ -1,9 +1,4 @@
 <article>
-    {{#if loggedIn}}
-    <form action="/admin/logout" method="POST">
-        <input type="submit" value="Logg Ut">
-    </form>
-    {{else}}
     {{this.errorMsg}}
     <div class="login-form">
         <form action="/admin/login" method="POST">
@@ -16,5 +11,4 @@
             <input type="submit" value="Logg Inn">
         </form>
     </div>
-    {{/if}}
 </article>

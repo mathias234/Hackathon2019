@@ -8,6 +8,7 @@ var sqlCon = dbCon.getDBConnection();
 router.get('/', function (req, res, next) {
     res.render('index',
         {
+            isAdmin: req.session.isAdmin,
         });
 });
 

@@ -5,7 +5,7 @@ var dbCon = require('../lib/db')
 var sqlCon = dbCon.getDBConnection();
 
 function getPizza(callback) {
-    sqlCon.query('SELECT * FROM Pizza', function (err, results, fields) {
+    sqlCon.query('SELECT * FROM pizza', function (err, results, fields) {
         if (err) throw err;
 
         callback(results);
@@ -18,6 +18,7 @@ router.get('/', function (req, res, next) {
         res.render('bestill',
             {
                 pizzaArray: pizza,
+                isAdmin: req.session.isAdmin,
             });
     });
 });

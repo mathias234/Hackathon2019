@@ -64,6 +64,12 @@ nav ul li a {
 	margin-right: 15px;
 }
 
+.admin-nav {
+	margin-left: 40px;
+	font-size: 15px;
+	padding: 5px;
+}
+
 nav ul li a:hover {
 	color:rgb(0, 0, 0); 
 	text-decoration:none; 
@@ -95,13 +101,13 @@ footer {
 	color: white;
 }
 
-.grid-container {
+.pizza .grid-container {
 	display: grid;
 	grid-template-columns: auto auto auto;
 	padding: 10px;
 }
 
-.grid-item {
+.pizza .grid-item {
 	background-color: rgb(255, 240, 208);
 	border-radius: 5px;
 	border-width: 3px;
@@ -111,21 +117,21 @@ footer {
 	margin-bottom: 20px;
 }
 
-.grid-header {
+.pizza .grid-header {
 	border-bottom: 3px solid;
 	border-color: rgb(148, 135, 117);
 	font-size: 30px;
 	text-align: center;
 }
 
-.grid-body {
+.pizza .grid-body {
 	padding-left: 20px;
 	padding-right: 20px;
 	font-size: 20px;
 	margin-top: 20px;
 }
 
-.grid-button {
+.pizza .grid-button {
 	display:block;
 	text-align: center;
 
@@ -143,12 +149,30 @@ footer {
 	width: 50%;
 }
 
-.grid-button:hover {
+.pizza .grid-button:hover {
     color: rgb(0, 0, 0);
 	text-decoration:none; 
 	cursor:pointer;  
 	background-color: rgb(253, 246, 231);
 }
+
+.ordre .grid-container {
+	display: grid;
+	grid-template-columns: auto auto;
+	padding: 10px;
+}
+
+.ordre .grid-item {
+	background-color: rgb(255, 240, 208);
+	border-radius: 5px;
+	border-width: 3px;
+	border-style: solid;
+	border-color: rgb(148, 135, 117);
+	margin-left: 20px;
+	margin-bottom: 20px;
+	padding: 5px 5px 5px 20px;
+}
+
 
 .login-form {
 	width:30%;
@@ -182,7 +206,7 @@ footer {
 	}
 
 	/* endre griden til å bare ha en colonne */
-	.grid-container {
+	.pizza .grid-container {
 		grid-template-columns: auto;
 	}
 }

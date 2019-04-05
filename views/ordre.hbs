@@ -1,0 +1,15 @@
+<article>
+    <h2>Ordre: </h2>
+    <div class="ordre">
+        <div class="grid-container">
+            {{#each ordre}}
+            <div class="grid-item">
+                <p>Navn: {{this.navn}}</p>
+                <p>Mail: {{this.email}}</p>
+                <p>Telefon nr: {{this.telefonnr}}</p>
+                <p>Pizza: {{this.pizzaname}}</p>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+</article>

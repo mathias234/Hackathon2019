@@ -19,10 +19,16 @@
   <section>
     <nav>
       <ul>
-        <li><a class="button" href="/">Hjem</a></li>
-        <li><a class="button" href="/bestill">Bestill</a></li>
-        <li><a class="button" href="#">Om Oss</a></li>
-        <li><a class="button" href="/admin">Admin</a></li>
+        <li><a href="/">Hjem</a></li>
+        <li><a href="/bestill">Bestill</a></li>
+        <li><a href="#">Om Oss</a></li>
+        {{#if isAdmin}}
+        <li><a href="/admin">Admin</a></li>
+        <li><a class="admin-nav" href="/admin/ordre">Se Ordre</a></li>
+        <li><a class="admin-nav" href="/admin/endreMeny">Endre menyen</a></li>
+        <li><a class="admin-nav" href="/admin/logout">Logg Ut</a></li>
+
+        {{/if}}
       </ul>
     </nav>
 
