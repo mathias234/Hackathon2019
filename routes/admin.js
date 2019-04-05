@@ -18,8 +18,8 @@ router.get('/', function (req, res, next) {
     }
 });
 
+// Hent ordre og pizza navn basert på ordre.pizzaid
 function getOrders(callback) {
-    // Hent ordre og pizza navn basert på ordre.pizzaid
     sqlCon.query(
         "SELECT ordre.navn, ordre.id, ordre.telefonnr, ordre.email, pizza.name AS 'pizzaname' " +
         "FROM ordre INNER JOIN pizza ON pizza.id = ordre.pizzaId",
@@ -32,7 +32,6 @@ function getOrders(callback) {
 
 router.get('/ordre', function (req, res, next) {
     getOrders(function (ordre) {
-        console.log(ordre);
         res.render('ordre', {
             isAdmin: req.session.isAdmin,
             ordre: ordre,
@@ -40,6 +39,7 @@ router.get('/ordre', function (req, res, next) {
     });
 });
 
+// Hent alle pizzaene fra databasen
 function getPizza(callback) {
     sqlCon.query('SELECT * FROM pizza', function (err, results, fields) {
         if (err) throw err;
@@ -58,6 +58,7 @@ router.get('/endreMeny', function (req, res, next) {
 });
 
 router.post('/addpizza', function (req, res, next) {
+    // Legg til en ny pizza type i databasen.
     sqlCon.query('insert into pizza(name, description) VALUES(?, ?)',
         [req.body.pizzaNavn, req.body.pizzaBeskrivelse],
         function (err, result, fields) {
@@ -100,6 +101,7 @@ router.post('/login', function (req, res, next) {
     });
 });
 
+// Sletter session din og sender deg tilbake til hovedsiden
 router.get('/logout', function (req, res, next) {
     req.session.destroy(function (err) {
         if (err) throw err;
