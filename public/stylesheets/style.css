@@ -1,0 +1,169 @@
+* {
+	box-sizing: border-box;
+}
+
+body {
+	font-family: Arial, Helvetica, sans-serif;
+	margin: 0;
+	background: rgb(255, 224, 174);
+}
+
+/* Style the header */
+header {
+	background-color: rgb(255, 136, 0);
+	color: white;
+}
+
+.header-img {
+	float: left;
+	width: 150px;
+	height: 150px;
+	margin-left: 20px;
+	margin-top: 20px;
+}
+
+.title {
+	text-align: center;
+	font-size: 35px;
+	padding: 30px;
+}
+
+/* Create two columns/boxes that floats next to each other */
+nav {
+	float: left;
+	width: 15%;
+	/* only for demonstration, should be removed */
+	padding: 0px;
+	height: auto;
+	overflow:auto;
+}
+
+/* Style the list inside the menu */
+nav ul {
+	list-style-type: none;
+	padding: 0;
+}
+
+nav ul li {
+	margin-bottom: 15px;
+}
+
+nav ul li a {
+	display:block;
+	background-color: rgb(255, 240, 208);
+	border-radius: 5px;
+	border-width: 3px;
+	border-style: solid;
+	border-color: rgb(148, 135, 117);
+	padding: 10px;
+	
+    color: rgb(0, 0, 0);
+	text-decoration: none;
+	font-size: 25px;
+	margin-left: 15px;
+	margin-right: 15px;
+}
+
+nav ul li a:hover {
+	color:rgb(0, 0, 0); 
+	text-decoration:none; 
+	cursor:pointer;  
+	background-color: rgb(253, 246, 231);
+}
+
+article {
+	float: left;
+	padding: 20px;
+	width: 85%;
+	background-color: #fdcaa0;
+	/* only for demonstration, should be removed */
+}
+
+/* Clear floats after the columns */
+section:after {
+	content: "";
+	display: table;
+	clear: both;
+}
+
+/* Style the footer */
+footer {
+	background-color: rgb(173, 91, 14);
+	padding: 10px;
+	text-align: center;
+	color: white;
+}
+
+.grid-container {
+	display: grid;
+	grid-template-columns: auto auto auto;
+	padding: 10px;
+}
+
+.grid-item {
+	background-color: rgb(255, 240, 208);
+	border-radius: 5px;
+	border-width: 3px;
+	border-style: solid;
+	border-color: rgb(148, 135, 117);
+	margin-left: 20px;
+	margin-bottom: 20px;
+}
+
+.grid-header {
+	border-bottom: 3px solid;
+	border-color: rgb(148, 135, 117);
+	font-size: 30px;
+	text-align: center;
+}
+
+.grid-body {
+	padding-left: 20px;
+	padding-right: 20px;
+	font-size: 20px;
+	margin-top: 20px;
+}
+
+.grid-button {
+	display:block;
+	text-align: center;
+
+	background-color: rgb(255, 240, 208);
+	border-radius: 5px;
+	border-width: 3px;
+	border-style: solid;
+	border-color: rgb(148, 135, 117);
+	padding: 10px;
+	
+    color: rgb(0, 0, 0);
+	text-decoration: none;
+	font-size: 20px;
+	margin: 20px 20px 20px 25%;
+	width: 50%;
+}
+
+.grid-button:hover {
+    color: rgb(0, 0, 0);
+	text-decoration:none; 
+	cursor:pointer;  
+	background-color: rgb(253, 246, 231);
+}
+
+/* responsiv nettside!! */
+@media (max-width: 800px) {
+	nav, article {
+		width: 100%;
+		height: auto;
+	}
+	.grid-container {
+		grid-template-columns: auto;
+	}
+}
+
+/* Ta vekk logoen når vi er under 600px */
+@media (max-width: 600px) {
+	.header-img {
+		width: 0px;
+		height: 0px;
+	}
+}

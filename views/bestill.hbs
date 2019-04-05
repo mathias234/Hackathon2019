@@ -1,0 +1,19 @@
+<article>
+    <div class="grid-container">
+
+        {{#each pizzaArray}}
+        <div class="grid-item">
+            <div class="grid-header">
+                {{this.name}}
+            </div>
+            <div class="grid-body">
+                {{this.description}}
+            </div>
+            <a href="/bestill/{{this.id}}" class="grid-button">
+                Bestill
+            </a>
+        </div>
+        {{/each}}
+
+    </div>
+</article>
