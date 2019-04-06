@@ -1,20 +1,27 @@
-<article>
-    <h2>Endre Pizza: </h2>
-    {{#each pizza}}
-    Pizza Navn: {{this.name}}
+<h2>Endre Pizza: </h2>
+{{#each pizza}}
+Pizza Navn: {{this.name}}
+<br>
+Pris: {{this.price}}kr
 
-    <form action="/admin/slettpizza/{{this.id}}" method="POST">
-        <input type="submit" value="Slett">
-    </form>
+<form action="/admin/slettpizza/{{this.id}}" method="POST">
+    <input type="submit" value="Slett">
+</form>
 
+<br>
+{{/each}}
+
+<h2>Legg til Pizza: </h2>
+
+<form class="login-form" action="/admin/addpizza" method="POST">
+    <input style="height: 40px" type="text" name="pizzaNavn" placeholder="Pizza Navn">
     <br>
-    {{/each}}
-
-    <h2>Legg til Pizza: </h2>
-
-    <form action="/admin/addpizza" method="POST">
-        <input type="text" name="pizzaNavn" value="Pizza Navn">
-        <input type="text" name="pizzaBeskrivelse" value="Pizza Beskrivelse">
-        <input type="submit" value="Legg til">
-    </form>
-</article>
+    <br>
+    <input placeholder="Pizza Beskrivelse" style="height: 40px" type="text" name="pizzaBeskrivelse">
+    <br>
+    <br>
+    <input style="height: 40px" type="text" name="pizzaPris" placeholder="Pizza Pris">
+    <br>
+    <br>
+    <input type="submit" value="Legg til">
+</form>

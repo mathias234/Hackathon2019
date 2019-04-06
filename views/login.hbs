@@ -1,14 +1,12 @@
-<article>
-    {{this.errorMsg}}
-    <div class="login-form">
-        <form action="/admin/login" method="POST">
-            <p>Brukernavn:</p>
-            <input type="text" name="brukernavn" value="Brukernavn">
-            <br>
-            <p>Passord:</p>
-            <input type="password" name="passord" value="passord">
-            <br><br>
-            <input type="submit" value="Logg Inn">
-        </form>
-    </div>
-</article>
+{{this.errorMsg}}
+<div class="login-form">
+    <form action="/admin/login" method="POST">
+        <p>Brukernavn:</p>
+        <input type="text" name="brukernavn" placeholder="Brukernavn">
+        <br>
+        <p>Passord:</p>
+        <input type="password" name="passord" placeholder="passord">
+        <br><br>
+        <input type="submit" value="Logg Inn">
+    </form>
+</div>

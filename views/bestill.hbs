@@ -1,19 +1,81 @@
-<article>
-    <div class="pizza">
-        <div class="grid-container">
-            {{#each pizzaArray}}
-            <div class="grid-item">
-                <div class="grid-header">
-                    {{this.name}}
-                </div>
-                <div class="grid-body">
-                    {{this.description}}
-                </div>
-                <a href="/bestill/{{this.id}}" class="grid-button">
-                    Bestill
-                </a>
+<div class="handlekurv">
+    <h2 style="margin-left: 10px">Handlekurv: </h2>
+
+    <form id="handlekurv" action="/bestill/betal">
+        <br>
+        <br>
+        <input class="button" type="submit" name="submit" value="Gå Til Handlekurv">
+    </form>
+</div>
+<div class="pizza">
+    <div class="grid-container">
+        {{#each pizzaArray}}
+        <div class="grid-item">
+            <div class="grid-header">
+                {{this.name}}
             </div>
-            {{/each}}
+            <div class="grid-body">
+                {{this.description}}
+                <br>
+                <br>
+                <div style="font-weight: bold">{{this.price}},-</div>
+            </div>
+            <button onclick="addToHandlekurv({{this.id}})" class="button">
+                Legg til i handlekurv
+            </button>
         </div>
+        {{/each}}
     </div>
-</article>
+</div>
+
+<script>
+    /* Hent handlekurven når siden blir lastet inn */
+    hentHandlekurv();
+
+    /* henter handlekurven fra serveren og legger det til på siden */
+    function hentHandlekurv() {
+        $.ajax({
+            url: "/api/hentHandlekurv",
+            success: function (result) {
+                var handlekurv = document.getElementById('handlekurv');
+                var parsedData = JSON.parse(result);
+
+                parsedData.forEach(res => {
+                    var gammelHTML = handlekurv.innerHTML;
+
+                    handlekurv.innerHTML =
+                        constructHandlekurvElement(res.id, res.name, res.price) +
+                        gammelHTML;
+                });
+            }
+        });
+    }
+
+    /* Legg til en ny pizza i handlekurven, id er IDen til pizzaen */
+    function addToHandlekurv(id) {
+        $.ajax({
+            url: "/api/getPizza/" + id,
+            success: function (result) {
+                var handlekurv = document.getElementById('handlekurv');
+                var parsedData = JSON.parse(result)[0];
+
+                var gammelHTML = handlekurv.innerHTML;
+
+                handlekurv.innerHTML =
+                    constructHandlekurvElement(parsedData.id, parsedData.name, parsedData.price) +
+                    gammelHTML;
+            }
+        });
+    }
+
+    /* Konstruerer et nytt handlekurv element */
+    function constructHandlekurvElement(id, name, price) {
+        return "<div style=\"font-size: 20px;\">" +
+            "<div class=\"name\">" + name + "</div>" +
+            "<div class=\"price\">:" + price + ",-</div>" +
+            "<br>" +
+            "<input hidden=\"true\" id=\"pizza:" + id + "\"type=\"antall\">" +
+            "</div>" +
+            "<br><br>";
+    }
+</script>

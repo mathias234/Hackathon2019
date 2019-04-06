@@ -10,14 +10,13 @@ body {
 
 /* Style the header */
 header {
-	background-color: rgb(255, 136, 0);
+	background-color:rgb(255, 136, 0);
 	color: white;
 }
 
 .header-img {
 	float: left;
-	width: 150px;
-	height: 150px;
+	width: 7%;
 	margin-left: 20px;
 	margin-top: 20px;
 }
@@ -26,6 +25,10 @@ header {
 	text-align: center;
 	font-size: 35px;
 	padding: 30px;
+}
+
+.title img {
+	width: 35%;
 }
 
 /* Create two columns/boxes that floats next to each other */
@@ -82,7 +85,7 @@ article {
 	padding: 20px;
 	width: 85%;
 	background-color: #fdcaa0;
-	min-height: 300px;
+	min-height: 75vh;
 	/* only for demonstration, should be removed */
 }
 
@@ -101,9 +104,35 @@ footer {
 	color: white;
 }
 
+.handlekurv {
+	max-width: 25%;
+	width: 24%;
+	min-height: 500px;
+	border-radius: 5px;
+	border-width: 3px;
+	border-style: solid;
+	border-color: rgb(148, 135, 117);
+	float:right;
+	background-color: rgb(255, 240, 208);
+	margin-top: 10px;
+}
+
+.handlekurv .price {
+	float: right;
+	margin-top: 20px;
+	margin-right: 30px;
+}
+
+.handlekurv .name {
+	float:left;
+	margin-top: 20px;
+	margin-left: 30px;
+}
+
 .pizza .grid-container {
+	max-width: 75%;
 	display: grid;
-	grid-template-columns: auto auto auto;
+	grid-template-columns: 50% 50%;
 	padding: 10px;
 }
 
@@ -131,7 +160,16 @@ footer {
 	margin-top: 20px;
 }
 
-.pizza .grid-button {
+
+
+.pizza .grid-button:hover {
+    color: rgb(0, 0, 0);
+	text-decoration:none; 
+	cursor:pointer;  
+	background-color: rgb(253, 246, 231);
+}
+
+.button {
 	display:block;
 	text-align: center;
 
@@ -147,13 +185,6 @@ footer {
 	font-size: 20px;
 	margin: 20px 20px 20px 25%;
 	width: 50%;
-}
-
-.pizza .grid-button:hover {
-    color: rgb(0, 0, 0);
-	text-decoration:none; 
-	cursor:pointer;  
-	background-color: rgb(253, 246, 231);
 }
 
 .ordre .grid-container {
@@ -177,6 +208,7 @@ footer {
 .login-form {
 	width:30%;
 	text-align:center;
+	margin-left: 30%;
 }
 
 .login-form input {
@@ -198,6 +230,66 @@ footer {
 	height: 25px;
 }
 
+.login-form .legg-til-ordre[type="submit"] {
+	width: 100%;
+	height: 75px;
+	font-size: 22px;
+}
+
+.login-form .legg-til-ordre[type="submit"]:hover {
+    color: rgb(0, 0, 0);
+	text-decoration:none; 
+	cursor:pointer;  
+	background-color: rgb(253, 246, 231);
+}
+
+.hjemmeside .grid-item a{
+	text-decoration:none;
+}
+.hjemmeside {
+	padding: 10px;
+}
+
+.hjemmeside .grid-container {
+	max-width: 100%;
+	display: grid;
+	grid-template-columns: 50% 49.7%;
+	grid-gap: 0.2%;
+}
+
+.hjemmeside .grid-item {
+	background-color: rgb(255, 240, 208);
+	border-radius: 5px;
+	border-width: 3px;
+	border-style: solid;
+	border-color: rgb(148, 135, 117);
+	margin-bottom: 20px;
+
+	height:200px;
+	font-size:3vw;
+	text-align:center;
+}
+.dagenspizza{
+	width:195px;
+	border-radius:5px;
+	float:left;
+}
+.tilbud {
+	background-color: rgb(255, 240, 208);
+	border-radius: 5px;
+	border-width: 3px;
+	border-style: solid;
+	border-color: rgb(148, 135, 117);
+	margin-bottom: 20px;
+	width:100%;
+	height:350px;
+	font-size:3vw;
+	text-align:center;
+}
+.tilbud img{
+	width:315px;
+	float:left;
+}
 /* responsiv nettside */
 @media (max-width: 800px) {
 	nav, article {
@@ -209,6 +301,10 @@ footer {
 	.pizza .grid-container {
 		grid-template-columns: auto;
 	}
+
+	.title img {
+		width: 60%;
+	}
 }
 
 /* Ta vekk logoen når vi er under 600px */
@@ -216,5 +312,8 @@ footer {
 	.header-img {
 		width: 0px;
 		height: 0px;
+	}
+	.title img {
+		width: 100%;
 	}
 }

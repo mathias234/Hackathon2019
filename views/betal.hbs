@@ -1,0 +1,56 @@
+<div class="handlekurv">
+    <h2 style="margin-left: 10px">Handlekurv: </h2>
+
+    <div id="handlekurv">
+        <br>
+        <br>
+    </div>
+</div>
+
+<form class="login-form" action="leggTilOrdre" method="POST">
+    <input type="text" name="navn" placeholder="Navn">
+    <br>
+    <br>
+    <input type="text" name="telefonnr" placeholder="Telefonnummer">
+    <br>
+    <br>
+    <input type="text" name="email" placeholder="E-Mail">
+    <br>
+    <br>
+    <input class="legg-til-ordre" type="submit" name="submit" value="Legg til ordre">
+</form>
+
+<script>
+    /* Hent handlekurven når siden blir lastet inn */
+    hentHandlekurv();
+
+    /* henter handlekurven fra serveren og legger det til på siden */
+    function hentHandlekurv() {
+        $.ajax({
+            url: "/api/hentHandlekurv",
+            success: function (result) {
+                var handlekurv = document.getElementById('handlekurv');
+                var parsedData = JSON.parse(result);
+
+                parsedData.forEach(res => {
+                    var gammelHTML = handlekurv.innerHTML;
+
+                    handlekurv.innerHTML =
+                        constructHandlekurvElement(res.id, res.name, res.price) +
+                        gammelHTML;
+                });
+            }
+        });
+    }
+
+    /* Konstruerer et nytt handlekurv element */
+    function constructHandlekurvElement(id, name, price) {
+        return "<div style=\"font-size: 20px;\">" +
+            "<div class=\"name\">" + name + "</div>" +
+            "<div class=\"price\">:" + price + ",-</div>" +
+            "<br>" +
+            "<input hidden=\"true\" id=\"pizza:" + id + "\"type=\"antall\">" +
+            "</div>" +
+            "<br><br>";
+    }
+</script>

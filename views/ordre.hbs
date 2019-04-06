@@ -1,15 +1,24 @@
-<article>
-    <h2>Ordre: </h2>
-    <div class="ordre">
-        <div class="grid-container">
-            {{#each ordre}}
-            <div class="grid-item">
+<h2>Ordre: </h2>
+<div class="ordre">
+    <div class="grid-container">
+        {{#each ordre}}
+        <div class="grid-item">
+            <form action="/admin/oppdaterordre" method="POST">
                 <p>Navn: {{this.navn}}</p>
                 <p>Mail: {{this.email}}</p>
                 <p>Telefon nr: {{this.telefonnr}}</p>
                 <p>Pizza: {{this.pizzaname}}</p>
-            </div>
-            {{/each}}
+                <input type="input" hidden="true" name="id" value="{{this.id}}">
+                <input type="checkbox" name="ferdig" value="" {{#if this.ferdig}}checked{{/if}}>
+                Klar til henting
+                <br>
+                <input type="checkbox" name="hentet" value="" {{#if this.hentet}}checked{{/if}}>
+                Hentet og betalt
+
+                <br>
+                <input class="button" type="submit" name="submit" value="Oppdater">
+            </form>
         </div>
+        {{/each}}
     </div>
-</article>
+</div>

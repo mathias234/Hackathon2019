@@ -23,4 +23,31 @@ router.get('/', function (req, res, next) {
     });
 });
 
+router.get('/betal', function (req, res, next) {
+    res.render('betal', {
+        isAdmin: req.session.isAdmin,
+    });
+});
+
+router.post('/leggTilOrdre', function (req, res, next) {
+    req.session.handlekurv.forEach(pizza => {
+        sqlCon.query('INSERT INTO ordre(navn, telefonnr, email, pizzaId) VALUES(?,?,?,?)', [
+            req.body.navn,
+            req.body.telefonnr,
+            req.body.email,
+            pizza.id,
+
+        ], function (err, results, fields) {
+            if (err) throw err;
+
+        });
+    });
+
+    req.session.handlekurv = undefined;
+    res.render('takkforhandelen', {
+        isAdmin: req.session.isAdmin
+    });
+});
+
+
 module.exports = router;

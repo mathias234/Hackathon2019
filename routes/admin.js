@@ -21,12 +21,28 @@ router.get('/', function (req, res, next) {
 // Hent ordre og pizza navn basert på ordre.pizzaid
 function getOrders(callback) {
     sqlCon.query(
-        "SELECT ordre.navn, ordre.id, ordre.telefonnr, ordre.email, pizza.name AS 'pizzaname' " +
+        "SELECT ordre.navn, ordre.id, ordre.telefonnr, ordre.email, ordre.hentet, ordre.ferdig, pizza.name AS 'pizzaname' " +
         "FROM ordre INNER JOIN pizza ON pizza.id = ordre.pizzaId",
         function (err, result, fields) {
             if (err) throw err;
 
-            callback(result);
+            var data = [];
+
+            result.forEach(res => {
+                if (res.hentet == 0)
+                    res.hentet = false;
+                else
+                    res.hentet = true;
+
+                if (res.ferdig == 0)
+                    res.ferdig = false;
+                else
+                    res.ferdig = true;
+
+                data.push(res);
+            });
+
+            callback(data);
         });
 }
 
@@ -36,6 +52,28 @@ router.get('/ordre', function (req, res, next) {
             isAdmin: req.session.isAdmin,
             ordre: ordre,
         });
+    });
+});
+
+router.post('/oppdaterordre', function (req, res, next) {
+    console.log(req.body);
+
+    var hentet = 0;
+    if (req.body.hentet != undefined)
+        hentet = 1;
+
+    var ferdig = 0;
+    if (req.body.ferdig != undefined)
+        ferdig = 1;
+
+    sqlCon.query('UPDATE ordre SET hentet=?, ferdig=? where id=?', [
+        hentet,
+        ferdig,
+        req.body.id
+    ], function (err) {
+        if (err) throw err;
+
+        res.redirect('/admin/ordre');
     });
 });
 
@@ -59,8 +97,8 @@ router.get('/endreMeny', function (req, res, next) {
 
 router.post('/addpizza', function (req, res, next) {
     // Legg til en ny pizza type i databasen.
-    sqlCon.query('insert into pizza(name, description) VALUES(?, ?)',
-        [req.body.pizzaNavn, req.body.pizzaBeskrivelse],
+    sqlCon.query('insert into pizza(name, description, price) VALUES(?, ?, ?)',
+        [req.body.pizzaNavn, req.body.pizzaBeskrivelse, req.body.pizzaPris],
         function (err, result, fields) {
             if (err) throw err;
             res.redirect('/admin/endreMeny');
